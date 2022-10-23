@@ -13,7 +13,15 @@ after_sucess:
   - docker build -t konman01/multi-nginx ./nginx
   - docker build -t konman01/multi-server ./server
   - docker build -t konman01/multi-worker ./worker
+  
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
 
+  # Take those image and push to Docker huib
+  - docker push konman01/multi-client
+  - docker push konman01/multi-nginx
+  - docker push konman01/multi-server
+  - docker push konman01/multi-worker
 
 
 
